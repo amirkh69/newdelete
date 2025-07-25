@@ -22,6 +22,9 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
+      - name: BASE_URL
+        run: echo "${{ secrets.HELLO_WORLD }}" | base64 > lib/remote/base_url.dart
+
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
