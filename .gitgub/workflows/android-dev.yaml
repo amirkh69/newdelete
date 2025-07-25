@@ -13,21 +13,27 @@ jobs:
     name: Build & Release
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
       - uses: actions/checkout@v4
+
+      - name: Setup JDK
       - uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
           java-version: '17'
+
+      - name: Setup Flutter
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
           flutter-version: 3.29.2
           architecture: x64
 
-      - run flutter pub get
+      - name: Dependencies
+        run: flutter pub get
 
-    -name: Build APK  
-      - run: flutter build apk --release --build-name=2.0.0 --build-number=2
+      - name: Build APK
+        run: flutter build apk --release --build-name=2.0.0 --build-number=2
 
 
 
